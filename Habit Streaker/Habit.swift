@@ -13,6 +13,7 @@ final class Habit{
         self.createdAt = .now
         self.doneOn = []
     }
+    
 }
 
 @Model
