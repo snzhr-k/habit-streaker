@@ -15,18 +15,21 @@ struct HabitView: View{
 
 @ViewBuilder
 func getHabitMap(habit: Habit) -> some View{
-    Form{
-        Section{
-            //habit map view
-            Text(habit.createdAt.description)
-        }
-        
-        Section{
-            //description fot the habit
-            //for how many days
-            //since when started
-            //current sctreak
-            Text(habit.name)
+    
+    var chunkedDates: [[HabitLog]] = habit.getMapChunk(of: 10)
+    var habitBoxSize: CGFloat = 10.0
+    
+    ScrollView(.vertical){
+        VStack(alignment: .leading){
+            ForEach(chunkedDates, id: \.self){row in
+                HStack{
+                    ForEach(row, id: \.self){log in
+                        Rectangle()
+                            .frame(width: habitBoxSize, height: habitBoxSize)
+                            .foregroundColor(.green)
+                    }
+                }
+            }
         }
     }
 }
