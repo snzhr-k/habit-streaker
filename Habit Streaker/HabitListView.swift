@@ -10,7 +10,9 @@ struct HabitListView: View{
         NavigationStack{
             List{
                 ForEach(Habits){habit in
-                    HabitRowButton(habit: habit)
+                    NavigationLink(destination: HabitView(habit: habit)){
+                        HabitRowButton(habit: habit)
+                    }
                 }.onDelete(perform: deleteHabit)
             }.listRowSeparator(.hidden)
                 .navigationTitle(Text(Date.now, format: .dateTime.day().month().year()).font(.headline).fontWeight(.bold))

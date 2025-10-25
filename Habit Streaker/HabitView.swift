@@ -1,20 +1,12 @@
 import SwiftUI
 
 struct HabitView: View{
-    
+    @Bindable var habit: Habit
     
     var body: some View{
         NavigationStack{
-            Form{
-                Section{
-                    
-                }
-                
-                Section{
-                    
-                }
-            }
-        }.navigationTitle(<#T##title: Text##Text#>)
+            getHabitMap(habit: habit)
+        }.navigationTitle(habit.name)
     }
     
     
@@ -22,23 +14,19 @@ struct HabitView: View{
 }
 
 @ViewBuilder
-func getHabitMap(habit: Habit) -> View{
-    var body: any View{
-        NavigationStack{
-            Form{
-                Section{
-                    //habit map view
-                }
-                
-                Section{
-                    //description fot the habit
-                    //for how many days
-                    //since when started
-                    //current sctreak
-                }
-            }
-        }.navigationTitle(Text(habit.name))
+func getHabitMap(habit: Habit) -> some View{
+    Form{
+        Section{
+            //habit map view
+            Text(habit.createdAt.description)
+        }
+        
+        Section{
+            //description fot the habit
+            //for how many days
+            //since when started
+            //current sctreak
+            Text(habit.name)
+        }
     }
-    
-    return body
 }
